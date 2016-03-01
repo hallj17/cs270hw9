@@ -1,0 +1,66 @@
+== Jennie Hall CS 270 Assignment 4
+   Description: Creating the associations for the models 
+
+In this assignment, you'll create associations between the models that are
+necessary for the app to function.
+
+<b>Step 1 - create the Event-Location associations</b>
+
+This relationship is a many-to-many relationship, and we'll accomplish this by
+creating a Rails <tt>has_and_belongs_to_many</tt> association.
+
+In order to do this, we'll have to create a join table and update the Event and
+Location model files.
+
+* create a migration for the join table using the following command:
+  <tt>rails g migration create_events_locations</tt>
+* add the appropriate <tt>t.belongs_to</tt> references inside the migration
+* migrate the database using <tt>rake db:migrate</tt>
+* edit the Event model to read <tt>has_and_belongs_to_many :locations</tt>
+* edit the Location model to read <tt>has_and_belongs_to_many :events</tt>
+
+<b>Step 2 - create the Location-User associations</b>
+
+Recall from the E-R diagram that there are actually two separate relationships
+between locations and users: one for visiting a location and another for owners.  The
+visitors relationship will be many-to-many with a Visit join model and a Rails
+<tt>has_many :through</tt> association, and the owner relationship will
+be one-to-many using a Rails <tt>has_many/belongs_to</tt> association.
+
+* create a migration for the join model using the following command:
+  <tt>rails g migration create_visits</tt>
+* add the appropriate <tt>t.belongs_to</tt> references inside the migration, and
+  migrate the database using <tt>rake db:migrate</tt>. Remember to include <tt>t.timestamps null: false</tt>
+* create the Visit model, and add the appropriate <tt>belongs_to</tt> associations
+* edit the Location model to include the following associations 
+  - <tt>has_many :visits</tt>
+  - <tt>has_many :visitors, through: :visits, source: 'user'</tt>
+  - we want to be able to type <tt>@location.visitors</tt>, which is we have to 
+    provide the additional options to the <tt>has_many :through</tt> association
+* e dit the User model to in the same way to account for its portion of the association
+  
+So far, this sets up the <tt>has_many :through</tt> association for location
+visitors.  Now, we want to set up the <tt>has_many/belongs_to</tt> association
+for the location owner.
+
+* edit the Location model to read <tt>belongs_to :owner, class_name: 'User', foreign_key: 'user_id'</tt>
+  - we want to be able to say <tt>@location.owner</tt>, so make sure to specify the
+    appropriate options here
+* update the locations migration to include a <tt>t.belongs_to</tt> reference to 
+  the users table.
+* edit the User model to read <tt>has_many :owned_locations, class_name: 'Location'</tt>
+  - we want to be able to say <tt>@user.owned_locations</tt>, so make sure to specify
+    the appropriate options here
+
+<b>Step 3 - create the Event-User associations</b>
+
+The events-to-users associations are in much the same manner. We must account for
+both participants as well as the event owner.both
+
+* For the participants, use a join model called Participate.
+  - this means you'll need to create a migration for a table called <tt>participates</tt>
+* When you are finished, you should be able to type:
+  - <tt>@event.owner # => returns the owner as a User object</tt>
+  - <tt>@event.participants # => returns a list of participating users</tt>
+  - <tt>@user.owned_events # => returns a list of events owned by the user</tt>
+  - <tt>@user.participating_events # => returns a list of events that the user is participating in</tt>
