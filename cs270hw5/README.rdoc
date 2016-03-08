@@ -1,0 +1,84 @@
+== Jennie Hall CS270 Assignment 5
+   Description: Creating and setting up the apps and controllers 
+
+At this point, we should have the basics of our model functionality and can start
+using them in the controllers and views.  Thus, in this assignment, we will start 
+to setup our app controllers and views.
+
+<b>Step 1 - Update <tt>config/routes.rb</tt></b>
+
+We need a way to handle each specific incoming HTTP request.  Recall from our
+discussion on MVC, each request comes into and is handled by a controller.  Thus,
+we need to map each request to a specific controller/action.
+
+Rails accomplishes this mapping in the <tt>config/routes.rb</tt> file.  In that 
+file we can assign the root URL as well as map individual requests to controller/action
+pairs.
+
+A route in Rails consists of three parts: 
+
+* an HTTP request method
+* a URL
+* a controller/action pair
+
+The format for defining a route is indicated in the comment section of the routes
+file.
+
+We want to create routes to handle the following tasks (for each model):
+
+* create a new object (i.e., create an event)
+* view all objects (i.e., view all events)
+* view a single object (i.e., view a single event)
+* edit an object (i.e., edit a single event)
+* delete an object (i.e., delete a single event)
+
+We can lay out our routes as a conceptual table, like this:
+
+<tt>REQUEST METHOD     URL          CONTROLLER/ACTION</tt>
+
+<tt>--------------     ---          -----------------</tt>
+
+<tt>GET                '/events'    events#show_all_events</tt>
+
+<tt>GET                '/event/:id' events#show_event</tt>
+
+<tt>POST               '/event/new' events#create_events</tt>
+
+<tt>                   ...</tt>
+
+For three models (events, locations, and users), we have 5 tasks, so we need to
+define 15 routes in our routes file.define
+
+<b>Step 2 - Create controllers</b>
+
+In order for our routes to work, we need to create controllers for each model.
+We do so by creating a file in the <tt>app/controllers</tt> directory for each controller.
+For example. to create the events controller, you would create a file named <tt>events_controller.rb</tt>
+
+Take note of the lower-case/underscore/plural conventions!
+
+What is a controller?  Like everything in Rails, it's an object, and that means 
+it's defined as a class.  So, we need to define a controller class inside of each controller
+file.
+
+For example, for the events controller, we would define:
+
+<tt>class EventsController < ApplicationController</tt>
+
+<tt>end</tt>
+
+Again, pay attention to the plural/camel-case conventions used by Rails!
+
+Then, after defining each controller, we need to populate the controllers with the
+appropriate methods, called 'actions' in Rails.
+
+We need a method for each controller action referenced in the routes file.  For
+example, for the route mapped to 'events#show_all_events', we need to define a method
+in the events controller as follows:
+
+<tt>def show_all_events</tt>
+
+<tt>end</tt>
+
+In the next phase, we'll go back and write code to make the controllers actually do
+some processing, but for now just define the routes and controllers.
