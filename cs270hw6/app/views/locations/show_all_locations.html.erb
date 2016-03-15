@@ -1,0 +1,21 @@
+<%# name, description, coordinates, tag %>
+<table>
+    <tr>
+        <th> name</th>
+        <th> description</th>
+        <th> tag</th>
+        <th> coordinates</th>
+    </tr>
+    
+<%# create views, remember end tag %>    
+<% @locations.each do |c| %>
+    <tr>
+        <td> <%=c.name %></td>
+        <td> <%=c.description %> </td>
+        <td> <%=c.tag %></td>
+        <td> <%=c.coordinates %> </td>
+    </tr>
+    
+<% end %>
+    
+</table>

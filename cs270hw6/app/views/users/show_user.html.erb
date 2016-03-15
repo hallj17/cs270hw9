@@ -1,0 +1,75 @@
+<%# show user @user.name %>
+
+<h2> <%="#{@user.first_name} #{@user.last_name}"%></h2>
+<p><%=@user.email %></p>
+
+<%# user participating in event%>
+
+<table> 
+    <tr>
+        <th>participating</th>
+        <th>description</th>
+    </tr>
+<% @user.participating_events.each do |p| %>
+    <tr>
+        <td><%=p.name %></td>
+        <td><%=p.description %></td>
+    </tr>
+    
+<% end %>
+
+</table>
+<br>
+
+<%# user visited locations %>
+<table> 
+    <tr>
+        <th>visited</th>
+        <th>coordinates</th>
+    </tr>
+<% @user.visited_locations.each do |v| %>
+    <tr>
+        <td><%=v.name %></td>
+        <td><%=v.coordinates %></td>
+    </tr>
+    
+<% end %>
+
+</table>
+<br>
+<%# user owned events %>
+<table> 
+    <tr>
+        <th>owned event</th>
+        <th>description</th>
+        <th>start</th>
+        <th>end</th>
+    </tr>
+<% @user.owned_events.each do |o| %>
+    <tr>
+        <td><%=o.name %></td>
+        <td><%=o.description %></td>
+        <td><%=o.start_date %></td>
+        <td><%=o.end_date %></td>
+    </tr>
+    
+<% end %>
+
+</table>
+<br>
+
+<%# user owned locations%>
+<table> 
+    <tr>
+        <th>owned locations</th>
+        <th>coordinates</th>
+    </tr>
+<% @user.owned_locations.each do |own| %>
+    <tr>
+        <td><%=own.name %></td>
+        <td><%=own.coordinates %></td>
+    </tr>
+    
+<% end %>
+
+</table>
