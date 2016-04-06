@@ -1,4 +1,6 @@
-== CS 270 Assignment 7
+==Jennie Hall  CS 270 Assignment 7
+  Description: Coding the views for create and edit
+
 
 In this assignment, we'll finish coding all the views except for the 'show location'
 action. In doing so, we'll complete the bulk of our business logic necessary for
