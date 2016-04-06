@@ -1,0 +1,11 @@
+<%# create form_for with name, description, start date and end date 
+that can be edited %>
+
+<%= form_for @event, url: {action: "edit"} do |f| %>
+    <%= f.text_field :name %>
+    <%= f.text_field :description %>
+    <%= f.text_field :start_date %>
+    <%= f.text_field :end_date %>
+    <%= f.submit "Edit" %>
+
+<% end %>
