@@ -1,0 +1,12 @@
+<%# create form_for with a form_tag inside
+hidden_field_tag for tag %>
+<%= form_for @location, url: create_visit_path, method: 'post' do |f| %>
+    <%= form_tag (create_visit_path method: 'post') do %>
+        <%= label_tag(:email, 'Email') %>
+        <%= text_field_tag(:email) %>
+        <br>
+        <%= submit_tag('Submit') %>
+        <% hidden_field_tag('tag', @location.tag) %>
+<%end%>
+<%end%>
+
