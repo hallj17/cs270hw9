@@ -1,3 +1,4 @@
+== Jennie Hall CS270 Assignment 8 ==
 Description: Setting up the qr code for locations, and creating the views pipeline
 Input: User account email, passwords
 Output: Qr code
