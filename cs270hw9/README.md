@@ -1,5 +1,5 @@
 Jennie Hall CS 270 Assignment 9
-Description: Creating the models, controllers, and migrations for the Events Calender
+Description: Creating the models, controllers, and migrations for the Events Calendar
 ===================
 
 In this assignment, we will begin creating a new Rails application that serves as
